@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AP Calculator</title>
+    <link rel = "icon" href =  "https://cdn0.iconfinder.com/data/icons/finance-icons-rounded/110/Calculator-512.png" type = "image/x-icon"> 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+    <style>
+
+        body {font-family: Arial, Helvetica, sans-serif;}
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+<script>
+    // When the user clicks anywhere outside of the modal, close it
+
+    $(document).ready(function(){
+        document.getElementById("final-answer").innerHTML = "";
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        $("#myBtn").click(function(){
+            modal.style.display = "block";
+        });
+
+        $("#closepop").click(function(){
+            modal.style.display = "none";
+            location.reload();
+        });
+
+        // Get value on button click and show alert
+        $("#btnClick").click(function(){
+            var hit = $("#question1").val();
+            $("#level2").hide();
+            $("#level3").hide();
+            $("#level4").hide();
+            $("#level5").hide();
+            $("#level6").hide();
+            if (hit == 1){
+                $("#level2").show();
+            } else if (hit == 2){
+                $("#level3").show();
+            } else if (hit == 3){
+                $("#level4").show();
+            } else if (hit == 4){
+                $("#level5").show();
+            } else if (hit == 5){
+                $("#level6").show();
+            }
+
+        });
+
+        /************ Begin LEVEL 2 **********************/
+        $("#btnClick2").click(function(){
+            var question2 = $("#question2").val();
+            $("#level2-1").hide();
+            $("#level2-2").hide();
+            $("#level2-3").hide();
+            $("#level2-4").hide();
+            if (question2 == 'A'){
+                $("#level2-1").show();
+            }
+            if (question2 == 'B'){
+                $("#level2-2").show();
+            }
+            if (question2 == 'C'){
+                $("#level2-3").show();
+            }
+            if (question2 == 'D'){
+                $("#level2-4").show();
+            }
+        });
+
+        $("#level2-1-btnClick").click(function(){
+            var ques1 = $("#level2-1-ques1").val();
+            var ques2 = $("#level2-1-ques2").val();
+            var ques3 = $("#level2-1-ques3").val();
+            var answer = parseFloat(ques3)-(parseFloat(ques1) - parseFloat(1))*parseFloat(ques2);
+            ans = ('The first term of AP is: '+ answer);
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+
+        $("#level2-2-btnClick").click(function(){
+            var ques1 = $("#level2-2-ques1").val();
+            var ques2 = $("#level2-2-ques2").val();
+            var ques3 = $("#level2-2-ques3").val();
+            var answer =((parseFloat(ques3)*parseFloat(2))/parseFloat(ques1)-(parseFloat(ques1)-parseFloat(1))*parseFloat(ques2))*parseFloat(1/2);
+            ans = ('The first term of AP is: '+ answer);
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+
+        $("#level2-3-btnClick").click(function(){
+            var ques1 = $("#level2-3-ques1").val();
+            var ques2 = $("#level2-3-ques2").val();
+            var ques3 = $("#level2-3-ques3").val();
+            var answer = ((parseFloat(ques3)*parseFloat(2))/parseFloat(ques1))- parseFloat(ques2);
+            ans = ('The first term of AP is: '+ answer);
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+
+        $("#level2-4-btnClick").click(function(){
+            var d = parseFloat($("#level2-4-ques1").val());
+            var an = parseFloat($("#level2-4-ques2").val());
+            var sn = parseFloat($("#level2-4-ques3").val());
+
+            var coff_2, coff_1 = (1);
+            coff_2 = (-d);
+            var coff_3 = ((2*sn*d) - (an*an) - (an*d));
+            var disc = ((coff_2*coff_2) - (4*coff_1*coff_3));
+            if (disc>0) {
+                var x1 = (-(coff_2) + Math.sqrt(disc)) / (2 * coff_1);
+                var x2 = (-(coff_2) - Math.sqrt(disc)) / (2 * coff_1);
+                ans = "The values of the first term of AP are: " + x1 + " and " + x2;
+            }
+            if (disc==0) {
+                var x = -(coff_2) / (2 * coff_1);
+                ans = 'The first term of AP is: ' +  x;
+            }
+            if (disc<0) {
+                ans = ('There will be no such AP formed')
+            }
+
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+        /************ end LEVEL 2 **********************/
+
+
+        /************ Begin LEVEL 3 **********************/
+        $("#btnClick3").click(function(){
+            var question3 = $("#question3").val();
+            $("#level3-1").hide();
+            $("#level3-2").hide();
+            $("#level3-3").hide();
+            $("#level3-4").hide();
+            if (question3 == 'A'){
+                $("#level3-1").show();
+            }
+            if (question3 == 'B'){
+                $("#level3-2").show();
+            }
+            if (question3 == 'C'){
+                $("#level3-3").show();
+            }
+            if (question3 == 'D'){
+                $("#level3-4").show();
+            }
+        });
+
+        $("#level3-1-btnClick").click(function(){
+            var a = parseFloat($("#level3-1-ques1").val());
+            var d = parseFloat($("#level3-1-ques2").val());
+            var an = parseFloat($("#level3-1-ques3").val());
+            var answer = (an-a+d)/d;
+            ans = ('The number of terms in AP are: '+ answer);
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+
+        $("#level3-2-btnClick").click(function(){
+            var a = parseFloat($("#level3-2-ques1").val());
+            var d = parseFloat($("#level3-2-ques2").val());
+            var sn = parseFloat($("#level3-2-ques3").val());
+
+            var ans,coff_2,coff_3;
+            var coff_1 = (d)
+            coff_2 = ((2*a) - d)
+            coff_3 = (-2*sn)
+            var disc = ((coff_2*coff_2) - (4*coff_1*coff_3))
+            if (disc>0 && d!= 0) {
+                x1 = (-(coff_2) + Math.sqrt(disc)) / (2 * coff_1)
+                x2 = (-(coff_2) - Math.sqrt(disc)) / (2 * coff_1)
+            }
+            if (x1>0 && x2<0) {
+                ans = ("The number of terms in the AP are: " + x1);
+            }
+            if (x2>0 && x1<0) {
+                ans = ("The number of terms in the AP are: " + x2);
+            }
+            if (x1>0 && x2>0) {
+                ans = ("The number of terms in the AP are: " +  x1 + ' and ' + x2)
+            }
+            if (x1==0 && x2==0) {
+                ans = ("The number of terms in the AP are: 0");
+            }
+            if (disc==0 && d!= 0) {
+                x = -(coff_2) / (2 * coff_1);
+                ans = ('The number of terms in AP are: ' + x);
+            }
+            if (disc<0 && d!= 0) {
+                ans = ('There will be no such AP formed');
+            }
+            if (d == 0) {
+                ans = ('The number of terms in the AP are: '+ ((2 * sn) / ((2 * a) - d)));
+            }
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+
+        $("#level3-3-btnClick").click(function(){
+            var a = parseFloat($("#level3-3-ques1").val());
+            var an = parseFloat($("#level3-3-ques2").val());
+            var sn = parseFloat($("#level3-3-ques3").val());
+            var answer = 'The number of terms in AP are: ' + (2*sn)/(a+an);
+            document.getElementById("final-answer").innerHTML = answer;
+            modal.style.display = "block";
+        });
+
+        $("#level3-4-btnClick").click(function(){
+            var d = parseFloat($("#level3-4-ques1").val());
+            var an = parseFloat($("#level3-4-ques2").val());
+            var sn = parseFloat($("#level3-4-ques3").val());
+
+            var coff_2,coff_3, ans, x,x1,x2;
+            var coff_1 = (-d);
+            coff_2 = ((2*an)+d);
+            coff_3 = (-2*sn);
+            var disc = ((coff_2*coff_2) - (4*coff_1*coff_3));
+            if (disc>0 && d!= 0) {
+                x1 = (-(coff_2) + Math.sqrt(disc)) / (2 * coff_1);
+                x2 = (-(coff_2) - Math.sqrt(disc)) / (2 * coff_1)
+            }
+            if (x1>0 && x2<0) {
+                ans = ("The number of terms in the AP are: "+ x1)
+            }
+            if (x2>0 && x1<0) {
+                ans = ("The number of terms in the AP are: " + x2)
+            }
+            if (x1>0 && x2>0) {
+                ans = ("The number of terms in the AP are: "+ x1+ ' and '+ x2)
+            }
+            if (x1==0 && x2==0) {
+                ans = ("The number of terms in the AP are: 0");
+            }
+            if (disc==0 && d!= 0){
+                x = -(coff_2) / (2 * coff_1);
+                ans = ('The number of terms in AP are: ' + x)
+            }
+            if (disc<0 && d!= 0) {
+                ans = ('There will be no such AP formed')
+            }
+            if (d == 0) {
+                ans = ('The number of terms in the AP are: ' + ((2 * sn) / ((2 * an) + d)))
+            }
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+        /************ end LEVEL 3 **********************/
+
+        /************ Begin LEVEL 4 **********************/
+        $("#btnClick4").click(function(){
+            var question3 = $("#question4").val();
+            $("#level4-1").hide();
+            $("#level4-2").hide();
+            $("#level4-3").hide();
+            $("#level4-4").hide();
+            if (question3 == 'A'){
+                $("#level4-1").show();
+            }
+            if (question3 == 'B'){
+                $("#level4-2").show();
+            }
+            if (question3 == 'C'){
+                $("#level4-3").show();
+            }
+            if (question3 == 'D'){
+                $("#level4-4").show();
+            }
+        });
+
+        $("#level4-1-btnClick").click(function(){
+            var a = parseFloat($("#level4-1-ques1").val());
+            var n = parseFloat($("#level4-1-ques2").val());
+            var an = parseFloat($("#level4-1-ques3").val());
+            if (n == 1){
+                ans = ('The common difference of the AP is 0')
+            }
+            if (n!= 1){
+                ans =  ('The common difference of AP is: ' + ((an - a)/(n - 1)));
+            }
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+
+        $("#level4-2-btnClick").click(function(){
+            var a = parseFloat($("#level4-2-ques1").val());
+            var n = parseFloat($("#level4-2-ques2").val());
+            var sn = parseFloat($("#level4-2-ques3").val());
+
+            if (n == 1){
+                ans = ('The common difference of the AP is 0')
+            }
+            if (n!= 1){
+                ans =  ('The common difference of AP is: ' + ((2*sn/n - 2*a)/(n - 1)));
+            }
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+
+        $("#level4-3-btnClick").click(function(){
+            var a = parseFloat($("#level4-3-ques1").val());
+            var an = parseFloat($("#level4-3-ques2").val());
+            var sn = parseFloat($("#level4-3-ques3").val());
+            var answer = ('The common difference of AP is: ' + (((an*an)-(a*a))/((2*sn) - a - an)));
+            document.getElementById("final-answer").innerHTML = answer;
+            modal.style.display = "block";
+        });
+
+        $("#level4-4-btnClick").click(function(){
+            var n = parseFloat($("#level4-4-ques1").val());
+            var an = parseFloat($("#level4-4-ques2").val());
+            var sn = parseFloat($("#level4-4-ques3").val());
+
+            if (n == 1){
+                ans = ('The common difference of the AP is 0')
+            }
+            if (n!= 1){
+                ans =  ('The common difference of AP is: ' + ((2*an)-((2*sn)/n)/(n-1)));
+            }
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+        /************ end LEVEL 4 **********************/
+
+
+        /************ Begin LEVEL 5 **********************/
+        $("#btnClick5").click(function(){
+            var question3 = $("#question5").val();
+            $("#level5-1").hide();
+            $("#level5-2").hide();
+            $("#level5-3").hide();
+            $("#level5-4").hide();
+            if (question3 == 'A'){
+                $("#level5-1").show();
+            }
+            if (question3 == 'B'){
+                $("#level5-2").show();
+            }
+            if (question3 == 'C'){
+                $("#level5-3").show();
+            }
+            if (question3 == 'D'){
+                $("#level5-4").show();
+            }
+        });
+
+        $("#level5-1-btnClick").click(function(){
+            var a = parseFloat($("#level5-1-ques1").val());
+            var n = parseFloat($("#level5-1-ques2").val());
+            var d = parseFloat($("#level5-1-ques3").val());
+            ans = ("The n'th term of AP is: " + (a + (n - 1)*d));
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+
+        $("#level5-2-btnClick").click(function(){
+            var a = parseFloat($("#level5-2-ques1").val())
+            var n = parseFloat($("#level5-2-ques2").val())
+            var sn = parseFloat($("#level5-2-ques3").val());
+            ans =  ('The first term of AP is: ' + (((2*sn)/n) - a));
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+
+        $("#level5-3-btnClick").click(function(){
+            var a = parseFloat($("#level5-3-ques1").val());
+            var d = parseFloat($("#level5-3-ques2").val());
+            var sn = parseFloat($("#level5-3-ques3").val());
+            var coff_1,coff_2,coff_3;
+            coff_1 = (1)
+            coff_2 = (d)
+            coff_3 = (-(a*a)+(a*d)-(2*d*sn))
+            var disc = ((coff_2*coff_2) - (4*coff_1*coff_3))
+            if (disc>0) {
+                x1 = (-(coff_2) + Math.sqrt(disc)) / (2 * coff_1)
+                x2 = (-(coff_2) - Math.sqrt(disc)) / (2 * coff_1)
+                ans = ("The values of the n'th term of AP are: " +  x1 + " and " + x2);
+            }
+            if (disc==0) {
+                x = -(coff_2) / (2 * coff_1)
+                ans = ("The n'th term term of AP is: " + x);
+            }
+            if (disc<0) {
+                ans = ("There will be no such AP formed")
+            }
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+
+        $("#level5-4-btnClick").click(function(){
+            var n = parseFloat($("#level5-4-ques1").val());
+            var d = parseFloat($("#level5-4-ques2").val());
+            var sn = parseFloat($("#level5-4-ques3").val());
+
+            ans =  ("The n'th term of the AP is: " + (((2*sn)/(n)+(n - 1)*d)/2))
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+        /************ end LEVEL 5 **********************/
+
+
+        /************ Begin LEVEL 6 **********************/
+        $("#btnClick6").click(function(){
+            var question3 = $("#question6").val();
+            $("#level6-1").hide();
+            $("#level6-2").hide();
+            $("#level6-3").hide();
+            $("#level6-4").hide();
+            if (question3 == 'A'){
+                $("#level6-1").show();
+            }
+            if (question3 == 'B'){
+                $("#level6-2").show();
+            }
+            if (question3 == 'C'){
+                $("#level6-3").show();
+            }
+            if (question3 == 'D'){
+                $("#level6-4").show();
+            }
+        });
+
+        $("#level6-1-btnClick").click(function(){
+            var a = parseFloat($("#level6-1-ques1").val());
+            var n = parseFloat($("#level6-1-ques2").val());
+            var d = parseFloat($("#level6-1-ques3").val());
+            ans =  ("The sum of n terms of AP is: " + ((2*a + (n - 1)*d)*n/2));
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+
+        $("#level6-2-btnClick").click(function(){
+            var a = parseFloat($("#level6-2-ques1").val());
+            var n = parseFloat($("#level6-2-ques2").val());
+            var an = parseFloat($("#level6-2-ques3").val());
+            ans = ("The sum of n terms of AP is: " + ((a + an)*n/2));
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+
+        $("#level6-3-btnClick").click(function(){
+            var a = parseFloat($("#level6-3-ques1").val());
+            var d = parseFloat($("#level6-3-ques2").val());
+            var an = parseFloat($("#level6-3-ques3").val());
+            ans =  ("The sum of n terms of AP is: " + ((a + an)*(an-a+d)/(2*d)));
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+
+        $("#level6-4-btnClick").click(function(){
+            var n = parseFloat($("#level6-4-ques1").val());
+            var d = parseFloat($("#level6-4-ques2").val());
+            var an = parseFloat($("#level6-4-ques3").val());
+            ans =  ("The sum of n terms of AP is: " + (((2*an - (n - 1)*d)*n/2)));
+            document.getElementById("final-answer").innerHTML = ans;
+            modal.style.display = "block";
+        });
+        /************ end LEVEL 6 **********************/
+
+
+    });
+</script>
+
+</head>
+<body>
+<div>
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-red" href="javascript:void(0);" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-white">Home</a>
+    </div>
+<div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+    </div>
+</div>
+<header class="w3-container w3-green w3-center" style="padding:128px 16px">
+  <h1 class="w3-margin w3-jumbo">Arithmetic Progression Calculator</h1>
+  <p class="w3-xlarge">By Rachit Bhandari</p>
+  <p class="w3-xlarge">Click <a target="_blank" href = "https://www.youtube.com/channel/UCXNUwSU_GrbtyZs6JMZUtTA?view_as=subscriber"><font color = "white">here</font></a> to go to my youtube channel for latest updates.</p>
+</header>
+<div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>What do you want to calculate?</h1>
+      <h5 class="w3-padding-32">1. Find the first term of the AP<br>
+    2. Find the number of terms in AP<br>
+    3. Find the common difference of AP<br>
+    4. Find the n'th term of AP<br>
+    5. Find the sum of n terms of AP<br></h5>
+<div id="level1">
+    <input type="text" id="question1"><br><br>
+    <button id="btnClick"> Submit </button><br><br>
+
+<div id="level2" style="display: none">
+    What are the given terms?<br><br>
+    1. The number of terms in AP<br>
+    2. The common difference of AP<br>
+    3. The n'th term of AP<br>
+    4. The sum of n terms of AP<br><br><br>
+
+    Type [A] for 1;2;3 or [B] for 1;2;4 or [C] for 1;3;4 or [D] for 2;3;4; <br><br>
+
+    <input type="text" id="question2"><br><br>
+    <button id="btnClick2"> Submit </button><br><br>
+
+    <div id="level2-1" style="display: none">
+        The number of terms in AP:  <input type="text" id="level2-1-ques1"><br>
+	<br>
+        The common difference of AP:  <input type="text" id="level2-1-ques2"><br>
+	<br>
+        The n'th term of AP:  <input type="text" id="level2-1-ques3"><br><br>
+	<br>
+        <button id="level2-1-btnClick"> Submit </button><br><br>
+    </div>
+
+    <div id="level2-2" style="display: none">
+        The number of terms in AP:  <input type="text" id="level2-2-ques1"><br><br>
+        The common difference of AP:  <input type="text" id="level2-2-ques2"><br><br>
+        The sum of n terms of AP:  <input type="text" id="level2-2-ques3"><br><br><br>
+        <button id="level2-2-btnClick"> Submit </button><br><br>
+    </div>
+
+    <div id="level2-3" style="display: none">
+        The number of terms in AP:  <input type="text" id="level2-3-ques1"><br><br>
+        The n'th term of AP:  <input type="text" id="level2-3-ques2"><br><br>
+        The sum of n terms of AP:  <input type="text" id="level2-3-ques3"><br><br><br>
+        <button id="level2-3-btnClick"> Submit </button><br><br>
+    </div>
+
+    <div id="level2-4" style="display: none">
+        The common difference of AP:  <input type="text" id="level2-4-ques1"><br><br>
+        The n'th term of AP:  <input type="text" id="level2-4-ques2"><br><br>
+        The sum of n terms of AP:  <input type="text" id="level2-4-ques3"><br><br><br>
+        <button id="level2-4-btnClick"> Submit </button><br><br>
+    </div>
+
+</div>
+
+<div id="level3" style="display: none">
+    What are the given terms?<br><br>
+    1. The first term of AP<br>
+    2. The common difference of AP<br>
+    3. The n'th term of AP<br>
+    4. The sum of n terms of AP<br><br><br>
+
+    Type [A] for 1;2;3 or [B] for 1;2;4 or [C] for 1;3;4 or [D] for 2;3;4; <br><br>
+
+    <input type="text" id="question3"><br><br>
+    <button id="btnClick3"> Submit </button><br><br>
+
+    <div id="level3-1" style="display: none">
+        The first term of AP:  <input type="text" id="level3-1-ques1"><br><br>
+        The common difference of AP:  <input type="text" id="level3-1-ques2"><br><br>
+        The n'th term of AP:  <input type="text" id="level3-1-ques3"><br><br><br>
+        <button id="level3-1-btnClick"> Submit </button><br><br>
+    </div>
+
+    <div id="level3-2" style="display: none">
+        The first term of AP:  <input type="text" id="level3-2-ques1"><br><br>
+        The common difference of AP:  <input type="text" id="level3-2-ques2"><br><br>
+        The sum of n terms of AP:  <input type="text" id="level3-2-ques3"><br><br><br>
+        <button id="level3-2-btnClick"> Submit </button><br><br>
+    </div>
+
+    <div id="level3-3" style="display: none">
+        The first term of AP:   <input type="text" id="level3-3-ques1"><br><br>
+        The n'th term of AP:  <input type="text" id="level3-3-ques2"><br><br>
+        The sum of n terms of AP:  <input type="text" id="level3-3-ques3"><br><br><br>
+        <button id="level3-3-btnClick"> Submit </button><br><br>
+    </div>
+
+    <div id="level3-4" style="display: none">
+        The common difference of AP:  <input type="text" id="level3-4-ques1"><br><br>
+        The n'th term of AP:  <input type="text" id="level3-4-ques2"><br><br>
+        The sum of n terms of AP:  <input type="text" id="level3-4-ques3"><br><br><br>
+        <button id="level3-4-btnClick"> Submit </button><br><br>
+    </div>
+
+</div>
+
+<div id="level4" style="display: none">
+
+    What are the given terms?<br><br>
+    1. The first term of AP<br>
+    2. The number of terms in AP<br>
+    3. The n'th term of AP<br>
+    4. The sum of n terms of AP<br><br><br>
+
+    Type [A] for 1;2;3 or [B] for 1;2;4 or [C] for 1;3;4 or [D] for 2;3;4; <br><br>
+
+    <input type="text" id="question4"><br><br>
+    <button id="btnClick4"> Submit </button><br><br>
+
+    <div id="level4-1" style="display: none">
+        The first term of AP:  <input type="text" id="level4-1-ques1"><br><br>
+        The number of terms in AP:  <input type="text" id="level4-1-ques2"><br><br>
+        The n'th term of AP:  <input type="text" id="level4-1-ques3"><br><br><br>
+        <button id="level4-1-btnClick"> Submit </button><br><br>
+    </div>
+
+    <div id="level4-2" style="display: none">
+        The first term of AP:  <input type="text" id="level4-2-ques1"><br><br>
+        The number of terms in AP:  <input type="text" id="level4-2-ques2"><br><br>
+        The sum of n terms of AP:  <input type="text" id="level4-2-ques3"><br><br><br>
+        <button id="level4-2-btnClick"> Submit </button><br><br>
+    </div>
+
+    <div id="level4-3" style="display: none">
+        The first term of AP:   <input type="text" id="level4-3-ques1"><br><br>
+        The n'th term of AP:  <input type="text" id="level4-3-ques2"><br><br>
+        The sum of n terms of AP:  <input type="text" id="level4-3-ques3"><br><br><br>
+        <button id="level4-3-btnClick"> Submit </button><br><br>
+    </div>
+
+    <div id="level4-4" style="display: none">
+        The number of terms in AP:  <input type="text" id="level4-4-ques1"><br><br>
+        The n'th term of AP:  <input type="text" id="level4-4-ques2"><br><br>
+        The sum of n terms of AP:  <input type="text" id="level4-4-ques3"><br><br><br>
+        <button id="level4-4-btnClick"> Submit </button><br><br>
+    </div>
+
+</div>
+
+<div id="level5" style="display: none">
+
+    What are the given terms?<br><br>
+    1. The first term of AP<br>
+    2. The number of terms in AP<br>
+    3. The common difference of AP<br>
+    4. The sum of n terms of AP<br><br><br>
+
+    Type [A] for 1;2;3 or [B] for 1;2;4 or [C] for 1;3;4 or [D] for 2;3;4; <br><br>
+
+    <input type="text" id="question5"><br><br>
+    <button id="btnClick5"> Submit </button><br><br>
+
+    <div id="level5-1" style="display: none">
+        The first term of AP:  <input type="text" id="level5-1-ques1"><br><br>
+        The number of terms in AP:  <input type="text" id="level5-1-ques2"><br><br>
+        The common difference of AP:  <input type="text" id="level5-1-ques3"><br><br><br>
+        <button id="level5-1-btnClick"> Submit </button><br><br>
+    </div>
+
+    <div id="level5-2" style="display: none">
+        The first term of AP:  <input type="text" id="level5-2-ques1"><br><br>
+        The number of terms in AP:  <input type="text" id="level5-2-ques2"><br><br>
+        The sum of n terms of AP:  <input type="text" id="level5-2-ques3"><br><br><br>
+        <button id="level5-2-btnClick"> Submit </button><br><br>
+    </div>
+
+    <div id="level5-3" style="display: none">
+        The first term of AP:   <input type="text" id="level5-3-ques1"><br><br>
+        The common difference of AP:  <input type="text" id="level5-3-ques2"><br><br>
+        The sum of n terms of AP:  <input type="text" id="level5-3-ques3"><br><br><br>
+        <button id="level5-3-btnClick"> Submit </button><br><br>
+    </div>
+
+    <div id="level5-4" style="display: none">
+        The number of terms in AP:  <input type="text" id="level5-4-ques1"><br><br>
+        The common difference of AP:  <input type="text" id="level5-4-ques2"><br><br>
+        The sum of n terms of AP:  <input type="text" id="level5-4-ques3"><br><br><br>
+        <button id="level5-4-btnClick"> Submit </button><br><br>
+    </div>
+
+</div>
+
+<div id="level6" style="display: none">
+
+    What are the given terms?<br><br>
+    1. The first term of AP<br>
+    2. The number of terms in AP<br>
+    3. The common difference of AP<br>
+    4. The n'th term of AP<br><br><br>
+
+    Type [A] for 1;2;3 or [B] for 1;2;4 or [C] for 1;3;4 or [D] for 2;3;4; <br><br>
+
+    <input type="text" id="question6"><br><br>
+    <button id="btnClick6"> Submit </button><br><br>
+
+    <div id="level6-1" style="display: none">
+        The first term of AP:  <input type="text" id="level6-1-ques1"><br><br>
+        The number of terms in AP:  <input type="text" id="level6-1-ques2"><br><br>
+        The common difference of AP:  <input type="text" id="level6-1-ques3"><br><br><br>
+        <button id="level6-1-btnClick"> Submit </button><br><br>
+    </div>
+
+    <div id="level6-2" style="display: none">
+        The first term of AP:  <input type="text" id="level6-2-ques1"><br><br>
+        The number of terms in AP:  <input type="text" id="level6-2-ques2"><br><br>
+        The n'th term of AP:  <input type="text" id="level6-2-ques3"><br><br><br>
+        <button id="level6-2-btnClick"> Submit </button><br><br>
+    </div>
+
+    <div id="level6-3" style="display: none">
+        The first term of AP:   <input type="text" id="level6-3-ques1"><br><br>
+        The common difference of AP:  <input type="text" id="level6-3-ques2"><br><br>
+        The n'th term of AP:  <input type="text" id="level6-3-ques3"><br><br>
+        <button id="level6-3-btnClick"> Submit </button><br><br>
+    </div>
+
+    <div id="level6-4" style="display: none">
+        The number of terms in AP:  <input type="text" id="level6-4-ques1"><br><br>
+        The common difference of AP:  <input type="text" id="level6-4-ques2"><br><br>
+        The n'th term of AP:  <input type="text" id="level6-4-ques3"><br><br><br>
+        <button id="level6-4-btnClick"> Submit </button><br><br>
+    </div>
+
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close" id="closepop">&times;</span>
+        <p id="final-answer"></p>
+    </div>
+</p>
+</div>
+</div>
+</font>
+</body>
+</html>
